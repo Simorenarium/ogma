@@ -1,13 +1,13 @@
-name: Ogma Docker Image
+name: Publish Ogma Docker Image
 
 on:
   push:
-    branches: [ base ]
+    branches:
+      - base
 
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
 
     steps:
