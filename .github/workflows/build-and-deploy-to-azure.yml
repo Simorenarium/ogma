@@ -2,7 +2,8 @@ name: Publish Ogma Docker Image
 
 on:
   push:
-    tags: [ release/* ]
+    branches:
+      - base
 
 jobs:
 
