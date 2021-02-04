@@ -1,1 +1,12 @@
-# TODO
+FROM adoptopenjdk:11
+
+EXPOSE 8080
+ARG DISCORD_CLIENT_SECRET
+ARG DISCORD_PUBLIC_KEY
+ARG DISCORD_BOT_TOKEN
+
+ARG JAR_FILE=build/libs/ogma*.jar
+
+ADD ${JAR_FILE} app.jar
+
+ENTRYPOINT ["java","-jar","/app.jar"]
