@@ -1,0 +1,1 @@
+-- This file just init the schema_version table. Do not adapt it.

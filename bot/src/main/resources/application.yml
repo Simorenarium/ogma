@@ -1,0 +1,48 @@
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: 8080
+spring:
+  datasource:
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+    url: ${DB_CONNECTION_URL:jdbc:sqlite::memory:}
+    driver-class-name: ${DB_DRIVER_CLASSNAME:org.sqlite.JDBC}
+    hikari:
+      maximum-pool-size: 50
+      connection-timeout: 300000
+  flyway:
+    enabled: true
+    locations: classpath:coffee/michel/ogma/migration/sqlite
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+info.app.version: ${CURRENT_VERSION:local}
+management:
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+      show-details: never
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+      path-mapping:
+        health: healthz
+        info: infoz
+    enabled-by-default: false
+  # Do I need this?
+  server:
+    base-path: /
+coffee:
+  michel:
+    ogma:
+      discord:
+        client-id: 795382545294163988
+        client-secret: ${DISCORD_CLIENT_SECRET:}
+        public-key: ${DISCORD_PUBLIC_KEY:}
+        bot-token: ${DISCORD_BOT_TOKEN:}

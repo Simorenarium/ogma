@@ -1,0 +1,57 @@
+2021-02-04 02:54:00,076 INFO  [main] ApplicationKt: Starting ApplicationKt using Java 11.0.10 on ite01192 with PID 41114 (/Users/jmichel/Developer/git/ogma/bot/build/classes/kotlin/main started by jmichel in /Users/jmichel/Developer/git/ogma)
+2021-02-04 02:54:00,078 INFO  [main] ApplicationKt: The following profiles are active: jonas
+2021-02-04 02:54:00,956 INFO  [main] RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 02:54:00,976 INFO  [main] RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 10 ms. Found 0 JPA repository interfaces.
+2021-02-04 02:54:01,410 INFO  [main] TomcatWebServer: Tomcat initialized with port(s): 8080 (http)
+2021-02-04 02:54:01,420 INFO  [main] StandardService: Starting service [Tomcat]
+2021-02-04 02:54:01,421 INFO  [main] StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.39]
+2021-02-04 02:54:01,491 INFO  [main] [/]: Initializing Spring embedded WebApplicationContext
+2021-02-04 02:54:01,491 INFO  [main] ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 1330 ms
+2021-02-04 02:54:01,693 INFO  [main] VersionPrinter: Flyway Community Edition 7.1.1 by Redgate
+2021-02-04 02:54:01,696 INFO  [main] HikariDataSource: HikariPool-1 - Starting...
+2021-02-04 02:54:01,996 INFO  [main] HikariDataSource: HikariPool-1 - Start completed.
+2021-02-04 02:54:02,017 INFO  [main] DatabaseType: Database: jdbc:sqlite::memory: (SQLite 3.34)
+2021-02-04 02:54:02,043 INFO  [main] DbValidate: Successfully validated 1 migration (execution time 00:00.010s)
+2021-02-04 02:54:02,044 INFO  [main] JdbcTableSchemaHistory: Creating Schema History table "main"."flyway_schema_history" ...
+2021-02-04 02:54:02,056 INFO  [main] DbMigrate: Current version of schema "main": << Empty Schema >>
+2021-02-04 02:54:02,058 INFO  [main] DbMigrate: Migrating schema "main" to version "01.00.00.202102040220 - init"
+2021-02-04 02:54:02,061 INFO  [main] DbMigrate: Successfully applied 1 migration to schema "main" (execution time 00:00.005s)
+2021-02-04 02:54:02,102 INFO  [main] ThreadPoolTaskExecutor: Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 02:54:02,144 INFO  [task-1] LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 02:54:02,196 INFO  [task-1] Version: HHH000412: Hibernate ORM core version 5.4.23.Final
+2021-02-04 02:54:02,333 INFO  [task-1] Version: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-02-04 02:54:02,420 WARN  [task-1] JdbcEnvironmentInitiator: HHH000342: Could not obtain connection to query metadata
+org.hibernate.HibernateException: Unable to determine Dialect to use [name=SQLite, majorVersion=3]; user must register resolver or explicitly set 'hibernate.dialect'
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.determineDialect(DialectFactoryImpl.java:109)
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.buildDialect(DialectFactoryImpl.java:54)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:97)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:176)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:118)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1224)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1255)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-02-04 02:54:02,549 INFO  [main] UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: e5741ce9-ba9f-47ff-b94a-e321df2090c3
+
+2021-02-04 02:54:02,668 INFO  [main] DefaultSecurityFilterChain: Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61c4cebd, org.springframework.security.web.context.SecurityContextPersistenceFilter@500ec769, org.springframework.security.web.header.HeaderWriterFilter@37d3aa8c, org.springframework.security.web.csrf.CsrfFilter@631944d4, org.springframework.security.web.authentication.logout.LogoutFilter@595ec862, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@26c59348, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@63c84d31, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@655909e2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@563843f1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7bce9ce4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@fee881, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@716ae973, org.springframework.security.web.session.SessionManagementFilter@1bdafb01, org.springframework.security.web.access.ExceptionTranslationFilter@136fece2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1f60824e]
+2021-02-04 02:54:02,711 INFO  [main] EndpointLinksResolver: Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-02-04 02:54:02,759 INFO  [main] TomcatWebServer: Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-04 02:54:02,762 INFO  [main] DeferredRepositoryInitializationListener: Triggering deferred initialization of Spring Data repositories…
+2021-02-04 02:54:02,762 INFO  [main] DeferredRepositoryInitializationListener: Spring Data repositories initialized!
+2021-02-04 02:54:02,778 INFO  [main] ApplicationKt: Started ApplicationKt in 3.127 seconds (JVM running for 3.813)
