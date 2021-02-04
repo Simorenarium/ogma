@@ -21,6 +21,8 @@ jobs:
       run: echo ${{secrets.PKGS_LOGIN_PASS}} | docker login https://docker.pkg.github.com -u Simorenarium --password-stdin
 
     - name: Build the Docker image
+      # host/user/repo/image-repo/image-name:tag
+      # needs to be lowercase
       run: cd bot && docker build . -t docker.pkg.github.com/simorenarium/ogma/ogma:latest
 
     - name: Push Docker - latest
