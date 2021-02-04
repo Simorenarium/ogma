@@ -15,6 +15,8 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
+    jcenter()
+    maven("https://dl.bintray.com/dv8fromtheworld/maven")
 }
 
 dependencies {
@@ -40,6 +42,9 @@ dependencies {
     implementation("co.elastic.apm:apm-agent-api:1.17.0")
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+    // Business-Logic dependencies
+    implementation("net.dv8tion:JDA:4.2.0_227")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(module = "junit")
@@ -85,7 +90,8 @@ val jacocoCounters = listOf(
 )
 val jacocoExcludes = listOf(
     "coffee/michel/ogma/Application.kt",
-    "coffee/michel/ogma/ApplicationKt.class"
+    "coffee/michel/ogma/ApplicationKt.class",
+    "coffee/michel/ogma/context/*"
 )
 
 tasks.jacocoTestReport {

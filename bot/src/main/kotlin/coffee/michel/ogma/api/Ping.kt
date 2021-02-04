@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping(
-    value = ["/ping"],
+    value = ["/api/ping"],
     produces = [MediaType.APPLICATION_JSON_VALUE]
 )
-class Ping {
+internal class Ping {
 
     @GetMapping
     fun get() = "Pong!"
