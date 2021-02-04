@@ -18,7 +18,7 @@ internal class HelpCommand(
     override fun isTargeted(event: GuildMessageReceivedEvent): Boolean = event.message.contentStripped.contains("help")
 
     override fun handle(event: GuildMessageReceivedEvent) {
-        val answerMessage = event.message.reply("moment...").complete()
+        val answerMessage = event.message.reply("Hier ist der Commando-Katalog:").complete()
 
         CompletableFuture.runAsync {
             // this is not really a critical operation
