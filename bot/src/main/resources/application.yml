@@ -42,7 +42,7 @@ coffee:
   michel:
     ogma:
       discord:
-        client-id: 795382545294163988
+        client-id: ${DISCORD_CLIENT_ID:}
         client-secret: ${DISCORD_CLIENT_SECRET:}
         public-key: ${DISCORD_PUBLIC_KEY:}
         bot-token: ${DISCORD_BOT_TOKEN:}
