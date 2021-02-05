@@ -10,7 +10,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.stereotype.Component
 import java.util.*
 import java.util.concurrent.CompletableFuture
-import java.util.stream.Collectors
 import javax.annotation.PostConstruct
 import javax.annotation.PreDestroy
 
@@ -18,8 +17,12 @@ import javax.annotation.PreDestroy
 internal class CataloguePageHandler(
     private val jda: JDA,
     private val helpMessageRepository: HelpMessageRepository,
-    private val commands: List<CommandDescription>
+    _commands: List<CommandDescription>
 ) : ListenerAdapter() {
+    private val commands =
+        (_commands.filter { it.getName() !== "Help" } + _commands.filter { it.getName() === "Help" }
+            .sortedWith { a, b -> a.getName().compareTo(b.getName()) })
+            .reversed()
 
     companion object {
         private const val PREV_PAGE = "⬅"
@@ -29,15 +32,9 @@ internal class CataloguePageHandler(
 
     private val allowedMessages: MutableList<Long> = LinkedList()
 
-    private lateinit var sortedCommands: List<CommandDescription>
-
     @PostConstruct
     fun init() {
         jda.addEventListener(this)
-        sortedCommands = commands.stream().sorted { a, b ->
-            if (a.getName() == "Help") -1
-            else a.getName().compareTo(b.getName())
-        }.collect(Collectors.toList())
     }
 
     @PreDestroy
@@ -48,11 +45,10 @@ internal class CataloguePageHandler(
     fun showCatalogue(message: Message) {
         allowedMessages.add(message.idLong)
 
-
         //TODO implement search
 
         // should always be help
-        val cmd = sortedCommands.first()
+        val cmd = commands.first()
         val embedBuilder = initEmbedFor(cmd)
         cmd.applyDescriptionAsEmbed(embedBuilder)
         message.editMessage(embedBuilder.build()).queue()
@@ -76,10 +72,10 @@ internal class CataloguePageHandler(
 
             var command: CommandDescription? = null
 
-            if (reactionType == NEXT_PAGE && currentPage < sortedCommands.size - 1)
-                command = sortedCommands[currentPage + 1]
+            if (reactionType == NEXT_PAGE && currentPage < commands.size - 1)
+                command = commands[currentPage + 1]
             else if (reactionType == PREV_PAGE && currentPage > 0)
-                command = sortedCommands[currentPage - 1]
+                command = commands[currentPage - 1]
             else if (reactionType == DONE) {
                 val messageId = message.idLong
 
@@ -101,7 +97,7 @@ internal class CataloguePageHandler(
         .setTitle(command.getName())
         .setFooter(getHelpPageInFooter(command))
 
-    fun getHelpPageInFooter(desc: CommandDescription) = "${sortedCommands.indexOf(desc) + 1}/${sortedCommands.size}"
+    fun getHelpPageInFooter(desc: CommandDescription) = "${commands.indexOf(desc) + 1}/${commands.size}"
 
     fun getPageFromHelpFooter(footer: String): Int = Integer.valueOf(footer.split("/")[0]) - 1
 
