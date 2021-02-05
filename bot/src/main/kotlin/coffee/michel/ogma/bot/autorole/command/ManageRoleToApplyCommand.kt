@@ -31,10 +31,10 @@ internal class RolesToAutoApplyCommandDescription : CommandDescription {
 }
 
 @Component
-internal class AddRoleToApplyCommand(private var rolesToAutoApply: RolesToAutoApply) : BaseCommand {
+internal class AddRoleToApplyCommand(private var rolesToAutoApply: RolesToAutoApply) : BaseCommand() {
 
     override fun isTargeted(event: GuildMessageReceivedEvent): Boolean =
-        event.message.contentStripped.contains("add role-to-apply onJoin")
+        startsWith(event, "add role-to-apply onJoin")
 
     override fun handle(event: GuildMessageReceivedEvent) {
         if (!hasPermissions(event)) return
@@ -51,10 +51,10 @@ internal class AddRoleToApplyCommand(private var rolesToAutoApply: RolesToAutoAp
 }
 
 @Component
-internal class RemoveRoleToApplyCommand(private var rolesToAutoApply: RolesToAutoApply) : BaseCommand {
+internal class RemoveRoleToApplyCommand(private var rolesToAutoApply: RolesToAutoApply) : BaseCommand() {
 
     override fun isTargeted(event: GuildMessageReceivedEvent): Boolean =
-        event.message.contentStripped.contains("remove role-to-apply onJoin")
+        startsWith(event, "remove role-to-apply onJoin")
 
     override fun handle(event: GuildMessageReceivedEvent) {
         if (!hasPermissions(event)) return

@@ -14,3 +14,5 @@ fun Long.isGreaterThan(other: Long): Boolean {
 fun BigDecimal.isNonNegative(): Boolean {
     return this >= BigDecimal.ZERO
 }
+
+fun String.containsIgnoreCase(search: String): Boolean = this.matches(Regex("^.*${search}.*$", RegexOption.IGNORE_CASE))

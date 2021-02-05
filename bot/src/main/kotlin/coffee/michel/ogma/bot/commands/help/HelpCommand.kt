@@ -15,9 +15,9 @@ import java.util.concurrent.CompletableFuture
 internal class HelpCommand(
     private val cataloguePager: CataloguePageHandler,
     private val helpMessageRepository: HelpMessageRepository,
-) : BaseCommand {
+) : BaseCommand() {
 
-    override fun isTargeted(event: GuildMessageReceivedEvent): Boolean = event.message.contentStripped.contains("help")
+    override fun isTargeted(event: GuildMessageReceivedEvent): Boolean = startsWith(event, "help")
 
     override fun handle(event: GuildMessageReceivedEvent) {
         val answerMessage = event.message.reply("Hier ist der Commando-Katalog:").complete()
