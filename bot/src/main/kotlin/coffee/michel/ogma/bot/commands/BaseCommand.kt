@@ -7,8 +7,9 @@ internal abstract class BaseCommand {
     abstract fun isTargeted(event: GuildMessageReceivedEvent): Boolean
     abstract fun handle(event: GuildMessageReceivedEvent)
 
-    protected fun startsWith(event: GuildMessageReceivedEvent, searchTerm: String): Boolean =
-        event.message.contentRaw.replace(Regex("<.*>"), "").trim().startsWith(searchTerm)
+    protected fun startsWith(event: GuildMessageReceivedEvent, searchTerm: String): Boolean {
+        return event.message.contentRaw.substringAfter(" ").trim().startsWith(searchTerm)
+    }
 
 
 }
