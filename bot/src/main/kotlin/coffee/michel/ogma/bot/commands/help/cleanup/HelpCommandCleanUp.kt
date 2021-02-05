@@ -42,6 +42,4 @@ internal class HelpCommandCleanUp(
                     }
             }
     }
-
-
 }
