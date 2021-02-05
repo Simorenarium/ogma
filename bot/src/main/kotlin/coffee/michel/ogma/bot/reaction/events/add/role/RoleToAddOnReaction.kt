@@ -1,4 +1,4 @@
-package coffee.michel.ogma.bot.commands.addReactionEvent
+package coffee.michel.ogma.bot.reaction.events.add.role
 
 import javax.persistence.*
 
@@ -9,6 +9,6 @@ internal data class RoleToAddOnReaction(
     val id: Long,
     val guildId: Long,
     val messageId: Long,
-    val emoteName: String,
+    val emote: String?,
     val targetRoleId: Long
 )
