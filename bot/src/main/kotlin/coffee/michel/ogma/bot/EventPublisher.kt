@@ -1,5 +1,6 @@
 package coffee.michel.ogma.bot
 
+import coffee.michel.ogma.bot.commands.BaseCommand
 import coffee.michel.ogma.bot.commands.Command
 import coffee.michel.ogma.bot.commands.help.HelpCommand
 import mu.KotlinLogging
@@ -19,7 +20,7 @@ private val log = KotlinLogging.logger {}
 @Component
 internal class EventPublisher(
     private val jda: JDA,
-    private val commands: List<Command>
+    private val commands: List<BaseCommand>
 ) : ApplicationListener<ContextRefreshedEvent>, ListenerAdapter() {
 
     override fun onApplicationEvent(event: ContextRefreshedEvent) {
