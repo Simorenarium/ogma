@@ -2,6 +2,7 @@ package coffee.michel.ogma.bot.commands.help
 
 import coffee.michel.ogma.bot.commands.CommandDescription
 import coffee.michel.ogma.bot.commands.help.cleanup.HelpMessageRepository
+import coffee.michel.ogma.containsIgnoreCase
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Message
@@ -10,6 +11,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.stereotype.Component
 import java.util.*
 import java.util.concurrent.CompletableFuture
+import java.util.stream.Collectors
 import javax.annotation.PostConstruct
 import javax.annotation.PreDestroy
 
@@ -17,12 +19,15 @@ import javax.annotation.PreDestroy
 internal class CataloguePageHandler(
     private val jda: JDA,
     private val helpMessageRepository: HelpMessageRepository,
+    _helpCommand: HelpCommandDescription,
     _commands: List<CommandDescription>
 ) : ListenerAdapter() {
     private val commands =
-        (_commands.filter { it.getName() !== "Help" } + _commands.filter { it.getName() === "Help" }
-            .sortedWith { a, b -> a.getName().compareTo(b.getName()) })
-            .reversed()
+        listOf(_helpCommand,
+            *_commands.filter { it.getName() !== "Help" }.sortedWith { a, b -> a.getName().compareTo(b.getName()) }
+                .toTypedArray()
+        )
+
 
     companion object {
         private const val PREV_PAGE = "⬅"
@@ -30,7 +35,8 @@ internal class CataloguePageHandler(
         private const val DONE = "✅"
     }
 
-    private val allowedMessages: MutableList<Long> = LinkedList()
+    private
+    val allowedMessages: MutableList<Long> = LinkedList()
 
     @PostConstruct
     fun init() {
@@ -45,10 +51,12 @@ internal class CataloguePageHandler(
     fun showCatalogue(message: Message) {
         allowedMessages.add(message.idLong)
 
-        //TODO implement search
-
+        val searchTerm = (message.referencedMessage?.contentStripped ?: "").substringAfter("help").trim()
+        println(searchTerm)
         // should always be help
-        val cmd = commands.first()
+        val cmd = commands.find {
+            it.getName().containsIgnoreCase(searchTerm)
+        } ?: commands.first()
         val embedBuilder = initEmbedFor(cmd)
         cmd.applyDescriptionAsEmbed(embedBuilder)
         message.editMessage(embedBuilder.build()).queue()

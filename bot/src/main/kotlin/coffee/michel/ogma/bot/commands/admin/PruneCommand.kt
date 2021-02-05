@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
 
 @Component
-internal class PruneCommand : Command {
+internal class PruneCommand : Command() {
 
     override fun getName(): String = "Prune"
 
@@ -15,7 +15,7 @@ internal class PruneCommand : Command {
         `prune 100` - löscht die 100 neusten Nachrichten.
     """.trimIndent()
 
-    override fun isTargeted(event: GuildMessageReceivedEvent): Boolean = event.message.contentStripped.contains("prune")
+    override fun isTargeted(event: GuildMessageReceivedEvent): Boolean = startsWith(event, "prune")
 
     override fun handle(event: GuildMessageReceivedEvent) {
         if (!(event.member?.permissions ?: emptyList()).contains(Permission.MESSAGE_MANAGE)) {
