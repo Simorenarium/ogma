@@ -44,6 +44,7 @@ internal class HelpCommandDescription : CommandDescription {
     override fun getName(): String = "Help"
     override fun getDescription(): String = """
         Der Help-Command öffnet diesen Command-Katalog.
+        `help <command>` sucht nach der Seite mit dem Command.
     """.trimIndent()
 
     override fun applyDescriptionAsEmbed(embedBuilder: EmbedBuilder): EmbedBuilder =

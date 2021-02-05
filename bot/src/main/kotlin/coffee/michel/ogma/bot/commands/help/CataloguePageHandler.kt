@@ -11,7 +11,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.stereotype.Component
 import java.util.*
 import java.util.concurrent.CompletableFuture
-import java.util.stream.Collectors
 import javax.annotation.PostConstruct
 import javax.annotation.PreDestroy
 
