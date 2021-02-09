@@ -5,16 +5,16 @@ server:
   port: 8080
 spring:
   datasource:
-    username: ${DB_USERNAME:sa}
-    password: ${DB_PASSWORD:}
-    url: ${DB_CONNECTION_URL:jdbc:sqlite::memory:}
-    driver-class-name: ${DB_DRIVER_CLASSNAME:org.sqlite.JDBC}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: ${DB_CONNECTION_URL}
+    driver-class-name: ${DB_DRIVER_CLASSNAME}
     hikari:
       maximum-pool-size: 50
       connection-timeout: 300000
   flyway:
     enabled: true
-    locations: classpath:coffee/michel/ogma/migration/sqlite
+    locations: classpath:coffee/michel/ogma/migration/psql
   jpa:
     open-in-view: false
     hibernate:

@@ -31,11 +31,7 @@ dependencies {
     // implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
-    // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
-    implementation("org.xerial:sqlite-jdbc:3.34.0")
-    // hibernate doesn't know sqlite dialect
-    implementation("com.github.gwenn:sqlite-dialect:0.1.2")
-
+    implementation("org.postgresql:postgresql:42.2.18")
     //TODO do I really need flyway?
     implementation("org.flywaydb:flyway-core")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.3")

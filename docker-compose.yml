@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  psql:
+    image: postgres
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ogma" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_USER: ogma
+      POSTGRES_PASSWORD: coffee_michel_ogma_db_password
+      POSTGRES_DB: ogma
+    ports:
+      - 5432:5432
+    networks:
+      - dev
+    volumes:
+      - sqldata:/var/opt/mssql/data
+  ogma:
+    build: bot/
+    ports:
+      - 80:8080
+    networks:
+      - dev
+    depends_on:
+      - psql
+    environment:
+      DB_USERNAME: ogma
+      DB_PASSWORD: coffee_michel_ogma_db_password
+      DB_CONNECTION_URL: jdbc:postgresql://psql:5432/ogma
+      DB_DRIVER_CLASSNAME: org.postgresql.Driver
+networks:
+  dev:
+    driver: bridge
+
+volumes:
+  sqldata:
