@@ -17,7 +17,7 @@ services:
     networks:
       - dev
     volumes:
-      - sqldata:/var/opt/mssql/data
+      - sqldata:/var/lib/postgresql/data
   ogma:
     build: bot/
     ports:
